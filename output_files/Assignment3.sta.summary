@@ -1,0 +1,69 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow Model Setup 'clk'
+Slack : -138.176
+TNS   : -4751.176
+
+Type  : Slow Model Setup 'Counter:mycounter|Filter:counter_filter|clk_out'
+Slack : -3.904
+TNS   : -86.787
+
+Type  : Slow Model Hold 'clk'
+Slack : -2.616
+TNS   : -2.616
+
+Type  : Slow Model Hold 'Counter:mycounter|Filter:counter_filter|clk_out'
+Slack : 0.753
+TNS   : 0.000
+
+Type  : Slow Model Recovery 'clk'
+Slack : -4.020
+TNS   : -129.885
+
+Type  : Slow Model Removal 'clk'
+Slack : 3.868
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'clk'
+Slack : -2.277
+TNS   : -159.087
+
+Type  : Slow Model Minimum Pulse Width 'Counter:mycounter|Filter:counter_filter|clk_out'
+Slack : -0.742
+TNS   : -48.972
+
+Type  : Fast Model Setup 'clk'
+Slack : -46.173
+TNS   : -1560.703
+
+Type  : Fast Model Setup 'Counter:mycounter|Filter:counter_filter|clk_out'
+Slack : -0.831
+TNS   : -12.505
+
+Type  : Fast Model Hold 'clk'
+Slack : -1.418
+TNS   : -1.418
+
+Type  : Fast Model Hold 'Counter:mycounter|Filter:counter_filter|clk_out'
+Slack : 0.243
+TNS   : 0.000
+
+Type  : Fast Model Recovery 'clk'
+Slack : -0.746
+TNS   : -23.848
+
+Type  : Fast Model Removal 'clk'
+Slack : 1.375
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'clk'
+Slack : -1.423
+TNS   : -104.378
+
+Type  : Fast Model Minimum Pulse Width 'Counter:mycounter|Filter:counter_filter|clk_out'
+Slack : -0.500
+TNS   : -33.000
+
+------------------------------------------------------------

@@ -1,0 +1,37 @@
+Quartus II Archive log --	C:/Users/hw/Desktop/Quartus_File/Assignment3/Assignment3.qarlog
+
+Archive:	C:/Users/hw/Desktop/Quartus_File/Assignment3/Assignment3.qar
+Date:		Thu Dec 22 23:45:58 2022
+Quartus II 64-Bit		13.0.0 Build 156 04/24/2013 SJ Full Version
+
+	=========== Files Selected: ===========
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Assignment3.qpf
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Assignment3.qsf
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Assignment3.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Binary2BCD.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Buzzer.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Coder_4bits.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Controller.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Controller_tb.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Counter.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Czerny.mif
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Filter.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Keyboard.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/KeyboardDebouncer.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/KeyboardScanner.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Keyboard_tb.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/MUSIC_LIANG_1.mif
+C:/Users/hw/Desktop/Quartus_File/Assignment3/NoteToSignal.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/ROM.qip
+C:/Users/hw/Desktop/Quartus_File/Assignment3/ROM.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/SevenSegs.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Test_KeyboardDisplay.v
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Waveform_Buzzer.vwf
+C:/Users/hw/Desktop/Quartus_File/Assignment3/Waveform_Counter.vwf
+C:/Users/hw/Desktop/Quartus_File/Assignment3/incremental_db/compiled_partitions/Assignment3.db_info
+C:/Users/hw/Desktop/Quartus_File/Assignment3/qsddx.mif
+d:/altera/13.0/quartus/bin64/assignment_defaults.qdf
+	======= Total: 26 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

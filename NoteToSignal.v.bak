@@ -1,0 +1,32 @@
+module NodeToSignal(clk,note,SPK);
+    input clk;
+    input[4:0] note;
+    
+    output SPK;
+
+    reg[31:0] tone;
+
+    Filter n2s_filter(.clk_in(clk),.clk_out(SPK),.cnt(tone).reset(1));
+
+    always@(note)begin
+        case(note)
+        1:tone=190840;
+        2:tone=170068;
+        3:tone=151515;
+        4:tone=143266;
+        5:tone=127551;
+        6:tone=113636;
+        7:tone=101215;
+        8:tone=95602;
+        9:tone=85179;
+        10:tone=75872;
+        11:tone=71633;
+        12:tone=63776;
+        13:tone=56818;
+        14:tone=50607;
+        15:tone=47755;
+        default:tone=190840;
+        endcase
+    end
+
+endmodule

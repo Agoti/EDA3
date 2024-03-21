@@ -1,0 +1,47 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\hw\Desktop\Quartus_File\Assignment3\simulation\modelsim
+vController
+I_^gLNaAOCED3P0E^Z_I972
+VSF?YZ1VII1oe?BO=?B@0K0
+Z1 dC:\Users\hw\Desktop\Quartus_File\Assignment3\simulation\modelsim
+w1671721959
+8Assignment3.vo
+FAssignment3.vo
+L0 31
+Z2 OV;L;10.1d;51
+r1
+31
+Z3 o-vlog01compat -work work -O0
+n@controller
+!i10b 1
+!s100 f2@<]`LiLOl9;jG?SSS^m1
+!s85 0
+!s108 1671722310.936000
+!s107 Assignment3.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|Assignment3.vo|
+!s101 -O0
+!s92 -vlog01compat -work work +incdir+. -O0
+vController_tb
+!i10b 1
+!s100 4Z1FG3Ih8DEgWe?]IIjmS1
+IC_5CiG<@g@NK9bERc1gI:3
+VcNdGiL;S:j60IlMEe:aK_3
+R1
+w1671718234
+8C:/Users/hw/Desktop/Quartus_File/Assignment3/Controller_tb.v
+FC:/Users/hw/Desktop/Quartus_File/Assignment3/Controller_tb.v
+L0 3
+R2
+r1
+!s85 0
+31
+!s108 1671722311.109000
+!s107 C:/Users/hw/Desktop/Quartus_File/Assignment3/Controller_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/hw/Desktop/Quartus_File/Assignment3|C:/Users/hw/Desktop/Quartus_File/Assignment3/Controller_tb.v|
+!s101 -O0
+R3
+!s92 -vlog01compat -work work +incdir+C:/Users/hw/Desktop/Quartus_File/Assignment3 -O0
+n@controller_tb

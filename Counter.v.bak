@@ -1,0 +1,28 @@
+module Counter(clk,sup,duration,reset,number,carry);
+    input clk;
+    input[31:0] sup;
+    input[31:0] duration;
+    input reset;
+
+    output reg[31:0] number;
+    output reg carry;
+
+    Filter counter_filter(
+        .clk_in(clk),.reset(reset),.clk_out(clk_out),.cnt(duration)
+    );
+
+    always@(posedge clk or negedge reset) begin
+      if(~reset)
+      begin number=0; carry=0; end
+      else if(number==sup-1) begin
+        carry=0;
+        number=0;
+      end
+      else begin
+        number=number+1;
+        if(number==sup-1)carry=1;
+        else carry=0;
+      end
+    end
+
+endmodule

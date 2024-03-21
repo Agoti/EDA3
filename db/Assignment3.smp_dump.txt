@@ -1,0 +1,29 @@
+
+State Machine - |Assignment3|SevenSegs:controller_display|SevenSegs_scanning_state
+Name SevenSegs_scanning_state.SevenSegs_s3 SevenSegs_scanning_state.SevenSegs_s2 SevenSegs_scanning_state.SevenSegs_s1 SevenSegs_scanning_state.SevenSegs_s0 
+SevenSegs_scanning_state.SevenSegs_s0 0 0 0 0 
+SevenSegs_scanning_state.SevenSegs_s1 0 0 1 1 
+SevenSegs_scanning_state.SevenSegs_s2 0 1 0 1 
+SevenSegs_scanning_state.SevenSegs_s3 1 0 0 1 
+
+State Machine - |Assignment3|Keyboard:controller_keyboard|KeyboardDebouncer:myDebouncer|monostable_state
+Name monostable_state.steady monostable_state.colddown monostable_state.temporary 
+monostable_state.steady 0 0 0 
+monostable_state.temporary 1 0 1 
+monostable_state.colddown 1 1 0 
+
+State Machine - |Assignment3|Keyboard:controller_keyboard|KeyboardScanner:myScanner|state
+Name state.s3 state.s2 state.s1 state.s0 
+state.s0 0 0 0 0 
+state.s1 0 0 1 1 
+state.s2 0 1 0 1 
+state.s3 1 0 0 1 
+
+State Machine - |Assignment3|Controller:mycontroller|state
+Name state.finish state.charge state.coin1 state.coin0 state.init state.sleep 
+state.sleep 0 0 0 0 0 0 
+state.init 0 0 0 0 1 1 
+state.coin0 0 0 0 1 0 1 
+state.coin1 0 0 1 0 0 1 
+state.charge 0 1 0 0 0 1 
+state.finish 1 0 0 0 0 1 

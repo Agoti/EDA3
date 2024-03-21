@@ -1,0 +1,228 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "12/23/2022 17:45:29"
+                                                                        
+// Verilog Self-Checking Test Bench (with test vectors) for design :    Buzzer
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module Buzzer_vlg_sample_tst(
+	clk,
+	enable,
+	sampler_tx
+);
+input  clk;
+input  enable;
+output sampler_tx;
+
+reg sample;
+time current_time;
+always @(clk or enable)
+                                                                                
+begin                                                 
+ if ($realtime > 0)                                   
+ begin                                                
+	if ($realtime == 0 || $realtime != current_time)  
+	begin									          
+		if (sample === 1'bx)                          
+			sample = 0;                               
+		else                                          
+			sample = ~sample;                         
+	end										          
+	current_time = $realtime;					      
+ end                                                  
+end                                                   
+
+assign sampler_tx = sample;
+endmodule
+
+module Buzzer_vlg_check_tst (
+	SPK,
+	done,
+	sampler_rx
+);
+input  SPK;
+input  done;
+input sampler_rx;
+
+reg  SPK_expected;
+reg  done_expected;
+
+reg  SPK_prev;
+reg  done_prev;
+
+reg  SPK_expected_prev;
+reg  done_expected_prev;
+
+reg  last_SPK_exp;
+reg  last_done_exp;
+
+reg trigger;
+
+integer i;
+integer nummismatches;
+
+reg [1:2] on_first_change ;
+
+
+initial
+begin
+trigger = 0;
+i = 0;
+nummismatches = 0;
+on_first_change = 2'b1;
+end
+
+// update real /o prevs
+
+always @(trigger)
+begin
+	SPK_prev = SPK;
+	done_prev = done;
+end
+
+// update expected /o prevs
+
+always @(trigger)
+begin
+	SPK_expected_prev = SPK_expected;
+	done_expected_prev = done_expected;
+end
+
+
+
+// expected SPK
+initial
+begin
+	SPK_expected = 1'b0;
+end 
+
+// expected done
+initial
+begin
+	done_expected = 1'b0;
+end 
+// generate trigger
+always @(SPK_expected or SPK or done_expected or done)
+begin
+	trigger <= ~trigger;
+end
+
+always @(posedge sampler_rx or negedge sampler_rx)
+begin
+`ifdef debug_tbench
+	$display("Scanning pattern %d @time = %t",i,$realtime );
+	i = i + 1;
+	$display("| expected SPK = %b | expected done = %b | ",SPK_expected_prev,done_expected_prev);
+	$display("| real SPK = %b | real done = %b | ",SPK_prev,done_prev);
+`endif
+	if (
+		( SPK_expected_prev !== 1'bx ) && ( SPK_prev !== SPK_expected_prev )
+		&& ((SPK_expected_prev !== last_SPK_exp) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port SPK :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", SPK_expected_prev);
+		$display ("     Real value = %b", SPK_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_SPK_exp = SPK_expected_prev;
+	end
+	if (
+		( done_expected_prev !== 1'bx ) && ( done_prev !== done_expected_prev )
+		&& ((done_expected_prev !== last_done_exp) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port done :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", done_expected_prev);
+		$display ("     Real value = %b", done_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_done_exp = done_expected_prev;
+	end
+
+	trigger <= ~trigger;
+end
+initial 
+
+begin 
+$timeformat(-12,3," ps",6);
+#100000000;
+if (nummismatches > 0)
+	$display ("%d mismatched vectors : Simulation failed !",nummismatches);
+else
+	$display ("Simulation passed !");
+$finish;
+end 
+endmodule
+
+module Buzzer_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg clk;
+reg enable;
+// wires                                               
+wire SPK;
+wire done;
+
+wire sampler;                             
+
+// assign statements (if any)                          
+Buzzer i1 (
+// port map - connection between master ports and signals/registers   
+	.SPK(SPK),
+	.clk(clk),
+	.done(done),
+	.enable(enable)
+);
+
+// clk
+always
+begin
+	clk = 1'b0;
+	clk = #10000 1'b1;
+	#10000;
+end 
+
+// enable
+initial
+begin
+	enable = 1'b0;
+	enable = #50000000 1'b1;
+end 
+
+Buzzer_vlg_sample_tst tb_sample (
+	.clk(clk),
+	.enable(enable),
+	.sampler_tx(sampler)
+);
+
+Buzzer_vlg_check_tst tb_out(
+	.SPK(SPK),
+	.done(done),
+	.sampler_rx(sampler)
+);
+endmodule
+

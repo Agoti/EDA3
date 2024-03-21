@@ -1,0 +1,22 @@
+module KeyboardDebouncer(clk,key_in,key_out)
+    input clk;
+    input[3:0] key_in;
+
+    output[3:0] key_out;
+
+    wire debounce_clk;
+
+    Filter debounce_clk_filter(.clk_in(clk),1000000,.clk_out(debounce_clk));
+
+    reg [15:0] key_reg0;
+    reg [15:0] key_reg1;
+    reg [15:0] key_reg2;
+
+    always@(posedge debounce_clk) begin
+        key_reg0 = key_in;
+        key_reg1 = key_reg0;
+        key_reg2 = key_reg1;
+    end
+
+    key_out = (~key_reg0&~key_reg1& ~key_reg2)|(~key_reg0&~key_reg1&key_reg2);
+endmodule

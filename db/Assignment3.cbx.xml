@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="Assignment3">
+		<CBX_INST_ENTRY INSTANCE_NAME="|Buzzer|NoteToSignal:mysig|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_ufm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Buzzer|ROM:myROM|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_n071.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

@@ -1,0 +1,103 @@
+'`timescale 1ns/1ps
+
+module Keyboard_tb();
+
+    integer expected_number;
+    integer i;
+    reg en;
+
+    reg clk;
+    reg[3:0] row;
+    reg[3:0] col;
+    reg[3:0] num;
+    reg pressed;
+    reg toggle;
+
+    reg mismatch_flag;
+
+    Keyboard mykeyboard(.clk(clk),.row(row),col(col),num(num),
+    .pressed(pressed),.toggle(toggle));
+
+    always begin
+        #10 clk=~clk;
+    end
+
+    initial begin
+        mismatch_flag=0;
+        $display("normal press...\n");
+        for(i=0;i<16;i=i+1) begin
+            #100000000 en=0;
+            #100000000 
+            #100000000 en=1;expected_number=i;
+            #100000000
+            col=num2col(.en(en),.row(row),.num(num));
+            $display("output:%x, shouldbe:%x\n",num,expected_number);
+            if(num!=expected_number)mismatch_flag=1;
+        end
+        if(mismatch_flag)$display("mismatch\n");
+        $display("long press...\n");
+        #200000000 en=0;
+        #3000000000 en=1;expected_number=2;
+        #200000000 en=0;
+        $display("debounce...\n");
+        for(i=0;i<10;i=i+1) begin
+            #100000 en=0;
+            #100000 en=1;expected_number=5;            
+        end
+        #200000000
+        for(i=0;i<10;i=i+1) begin
+            #100000 en=1;expected_number=5;
+            #100000 en=0;
+        end
+    end
+
+
+    function[3:0] num2col(en,num,row);
+        input en;
+        input[3:0] num;
+        input[3:0] row;
+
+        always@(*)begin
+            if(en=0)col=4'b1111;
+            else begin
+                case(row):
+                    4'b0111:
+                        case(num):
+                        0:col=4'b0111;
+                        1:col=4'b1011;
+                        2:col=4'b1101;
+                        3:col=4'b1110;
+                        default:col=4'b1111;
+                        endcase
+                    4'b1011:
+                    case(num):
+                        4:col=4'b0111;
+                        5:col=4'b1011;
+                        6:col=4'b1101;
+                        7:col=4'b1110;
+                        default:col=4'b1111;
+                        endcase
+                    4'b1101:
+                    case(num):
+                        8:col=4'b0111;
+                        9:col=4'b1011;
+                        10:col=4'b1101;
+                        11:col=4'b1110;
+                        default:col=4'b1111;
+                        endcase
+                    4'b1110:
+                    case(num):
+                        12:col=4'b0111;
+                        13:col=4'b1011;
+                        14:col=4'b1101;
+                        15:col=4'b1110;
+                        default:col=4'b1111;
+                        endcase
+                endcase
+            end
+        end
+
+    endfunction
+
+
+endmodule

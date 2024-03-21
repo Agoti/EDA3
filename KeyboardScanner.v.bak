@@ -1,0 +1,83 @@
+module KeyboardScanner(clk,row,col,key,pressed)
+    input clk;
+    input[3:0] row;
+
+    output reg[3:0] col;
+    output reg[3:0] key;
+    output wire pressed;
+
+    wire scan_clk;
+    reg[1:0] state;
+    reg[3:0] pcheck;
+
+    parameter s0 = 0;
+    parameter s1 = 1;
+    parameter s2 = 2;
+    parameter s3 = 3;
+
+    Filter keyboard_clk_filter(.clk_in(clk),5000,.clk_out(scan_clk));
+
+    always @(posedge scan_clk) begin
+        case(state)
+            s0:state=s1;
+            s1:state=s2;
+            s2:state=s3;
+            s3:state=s0;
+            default:state=s0;
+        endcase
+    end
+
+    always @(state) begin
+        case(state)
+            s0:col=4'b0111;
+            s1:col=4'b1011;
+            s2:col=4'b1101;
+            s3:col=4'b1110;
+            default:
+        endcase
+    end
+
+    always @(state) begin
+        case(state)
+            s0:
+            case(col)
+                4'b0111:key=4'h0001;pcheck[0]=1;
+                4'b1011:key=4'h0002;pcheck[0]=1;
+                4'b1101:key=4'h0004;pcheck[0]=1;
+                4'b1110:key=4'h0008;pcheck[0]=1;
+                4'b1111:pcheck[0]=0;
+                default:pcheck[0]=1;
+            endcase
+            s1:
+            case(col)
+                4'b0111:key=4'h0010;pcheck[1]=1;
+                4'b1011:key=4'h0020;pcheck[1]=1;
+                4'b1101:key=4'h0040;pcheck[1]=1;
+                4'b1110:key=4'h0080;pcheck[1]=1;
+                4'b1111:pcheck[1]=0;
+                default:pcheck[1]=1;
+            endcase
+            s2:
+            case(col)
+                4'b0111:key=4'h0100;pcheck[2]=1;
+                4'b1011:key=4'h0200;pcheck[2]=1;
+                4'b1101:key=4'h0400;pcheck[2]=1;
+                4'b1110:key=4'h0800;pcheck[2]=1;
+                4'b1111:pcheck[2]=0;
+                default:pcheck[2]=1;
+            endcase
+            s3:
+            case(col)
+                4'b0111:key=4'h1000;pcheck[3]=1;
+                4'b1011:key=4'h2000;pcheck[3]=1;
+                4'b1101:key=4'h4000;pcheck[3]=1;
+                4'b1110:key=4'h8000;pcheck[3]=1;
+                4'b1111:pcheck[3]=0;
+                default:pcheck[3]=1;
+            endcase
+            default:;
+        endcase
+    end
+
+    assign pressed=pcheck[0]&pcheck[1]&pcheck[2]&pcheck[3];
+endmodule

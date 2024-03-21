@@ -1,0 +1,19 @@
+module Buzzer(clk,enable,SPK);
+    input clk;
+    input enable;
+
+    output SPK;
+
+    reg counter_num;
+
+    wire[4:0] note
+    ROM myROM(.clock(clk),.address(counter_num),.q(note));
+
+    wire[31:0] counter_num;
+    wire counter_carry;
+    Counter mycounter(.clk(clk),.sup(136),.duration(30000000),.reset(~enable)
+        .number(counter_num),.carry(counter_carry));
+
+    NoteToSignal mysig(.clk(clk),.note(note),.SPK(SPK));
+
+endmodule

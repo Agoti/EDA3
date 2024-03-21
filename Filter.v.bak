@@ -1,0 +1,23 @@
+module Filter(clk_in,cnt,clk_out)
+input clk_in;
+input cnt;
+
+output clk_out;
+
+integer i;
+
+initial begin
+    i=0;
+    clk_out=0;
+end
+
+always @(posedge clk_in) begin
+    i=i+1;
+    if(i>=cnt/2) begin
+        i=0;
+        clk_out=~clk_out;
+    end
+end
+
+
+endmodule

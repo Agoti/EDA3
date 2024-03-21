@@ -1,0 +1,149 @@
+Flow report for Assignment3
+Fri Dec 23 17:45:30 2022
+Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Flow Summary                                                                     ;
++------------------------------------+---------------------------------------------+
+; Flow Status                        ; Successful - Fri Dec 23 17:45:30 2022       ;
+; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Full Version ;
+; Revision Name                      ; Assignment3                                 ;
+; Top-level Entity Name              ; Buzzer                                      ;
+; Family                             ; Cyclone II                                  ;
+; Device                             ; EP2C5Q208C8                                 ;
+; Timing Models                      ; Final                                       ;
+; Total logic elements               ; 1,302 / 4,608 ( 28 % )                      ;
+;     Total combinational functions  ; 1,292 / 4,608 ( 28 % )                      ;
+;     Dedicated logic registers      ; 99 / 4,608 ( 2 % )                          ;
+; Total registers                    ; 99                                          ;
+; Total pins                         ; 4 / 142 ( 3 % )                             ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 1,280 / 119,808 ( 1 % )                     ;
+; Embedded Multiplier 9-bit elements ; 0 / 26 ( 0 % )                              ;
+; Total PLLs                         ; 0 / 2 ( 0 % )                               ;
++------------------------------------+---------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 12/23/2022 15:57:00 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; Assignment3         ;
++-------------------+---------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                      ;
++--------------------------------------+---------------------------------+---------------+-------------+----------------+
+; Assignment Name                      ; Value                           ; Default Value ; Entity Name ; Section Id     ;
++--------------------------------------+---------------------------------+---------------+-------------+----------------+
+; COMPILER_SIGNATURE_ID                ; 163720051249939.167178222021344 ; --            ; --          ; --             ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --          ; Keyboard_tb    ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --          ; Controller_tb  ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST      ; On                              ; --            ; --          ; eda_simulation ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; Controller_tb                   ; --            ; --          ; eda_simulation ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                     ; --            ; --          ; eda_simulation ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)       ; <None>        ; --          ; --             ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                 ; --            ; --          ; eda_simulation ;
+; EDA_TEST_BENCH_FILE                  ; Keyboard_tb.v                   ; --            ; --          ; Keyboard_tb    ;
+; EDA_TEST_BENCH_FILE                  ; Controller_tb.v                 ; --            ; --          ; Controller_tb  ;
+; EDA_TEST_BENCH_MODULE_NAME           ; Keyboard_tb                     ; --            ; --          ; Keyboard_tb    ;
+; EDA_TEST_BENCH_MODULE_NAME           ; Controller_tb                   ; --            ; --          ; Controller_tb  ;
+; EDA_TEST_BENCH_NAME                  ; Keyboard_tb                     ; --            ; --          ; eda_simulation ;
+; EDA_TEST_BENCH_NAME                  ; Controller_tb                   ; --            ; --          ; eda_simulation ;
+; EDA_TIME_SCALE                       ; 1 ps                            ; --            ; --          ; eda_simulation ;
+; IP_TOOL_NAME                         ; ROM: 1-PORT                     ; --            ; --          ; --             ;
+; IP_TOOL_VERSION                      ; 13.0                            ; --            ; --          ; --             ;
+; MAX_CORE_JUNCTION_TEMP               ; 85                              ; --            ; --          ; --             ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                               ; --            ; --          ; --             ;
+; MISC_FILE                            ; ROM_bb.v                        ; --            ; --          ; --             ;
+; PARTITION_COLOR                      ; 16764057                        ; --            ; Buzzer      ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT_AND_ROUTING           ; --            ; Buzzer      ; Top            ;
+; PARTITION_NETLIST_TYPE               ; SOURCE                          ; --            ; Buzzer      ; Top            ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                    ; --            ; --          ; --             ;
+; TOP_LEVEL_ENTITY                     ; Buzzer                          ; Assignment3   ; --          ; --             ;
++--------------------------------------+---------------------------------+---------------+-------------+----------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:11     ; 1.0                     ; 4619 MB             ; 00:00:09                           ;
+; Fitter                    ; 00:00:08     ; 1.4                     ; 5249 MB             ; 00:00:09                           ;
+; Assembler                 ; 00:00:00     ; 1.0                     ; 4559 MB             ; 00:00:01                           ;
+; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 4619 MB             ; 00:00:01                           ;
+; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 4524 MB             ; 00:00:01                           ;
+; EDA Netlist Writer        ; 00:00:00     ; 1.0                     ; 4521 MB             ; 00:00:00                           ;
+; EDA Netlist Writer        ; 00:00:00     ; 1.0                     ; 4537 MB             ; 00:00:01                           ;
+; Total                     ; 00:00:23     ; --                      ; --                  ; 00:00:22                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++---------------------------+------------------+-----------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
++---------------------------+------------------+-----------+------------+----------------+
+; Analysis & Synthesis      ; AEGIS            ; Windows 7 ; 6.2        ; x86_64         ;
+; Fitter                    ; AEGIS            ; Windows 7 ; 6.2        ; x86_64         ;
+; Assembler                 ; AEGIS            ; Windows 7 ; 6.2        ; x86_64         ;
+; TimeQuest Timing Analyzer ; AEGIS            ; Windows 7 ; 6.2        ; x86_64         ;
+; EDA Netlist Writer        ; AEGIS            ; Windows 7 ; 6.2        ; x86_64         ;
+; EDA Netlist Writer        ; AEGIS            ; Windows 7 ; 6.2        ; x86_64         ;
+; EDA Netlist Writer        ; AEGIS            ; Windows 7 ; 6.2        ; x86_64         ;
++---------------------------+------------------+-----------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off Assignment3 -c Assignment3
+quartus_fit --read_settings_files=off --write_settings_files=off Assignment3 -c Assignment3
+quartus_asm --read_settings_files=off --write_settings_files=off Assignment3 -c Assignment3
+quartus_sta Assignment3 -c Assignment3
+quartus_eda --read_settings_files=off --write_settings_files=off Assignment3 -c Assignment3
+quartus_eda --gen_testbench --check_outputs=on --tool=modelsim_oem --format=verilog Assignment3 -c Assignment3 --vector_source=C:/Users/hw/Desktop/Quartus_File/Assignment3/Waveform_Buzzer.vwf --testbench_file=./simulation/qsim/Assignment3.vt
+quartus_eda --functional=on --simulation=on --tool=modelsim_oem --format=verilog Assignment3 -c Assignment3
+
+
+

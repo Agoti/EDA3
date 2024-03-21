@@ -1,0 +1,200 @@
+module Controller(clk,col,row,dogs,segs,sparking)
+    input clk;
+    input [3:0] col;
+    output [3:0] row;
+    output [3:0] digs;
+    output [7:0] segs;
+
+    output sparking;
+
+    reg [3:0] num;
+    reg pressed;
+
+    Keyboard controller_keyboard(
+        .clk(clk),
+        .col(col),
+        .row(row),
+        .num(num),
+        .pressed(pressed),
+    );
+
+    reg[15:0] bcd;
+    reg rbi;
+    
+    SevenSegs controller_display(
+        .clk(clk),
+        .BCD(bcd),
+        .DIGS(dig),
+        .SEGS(seg),
+        .DOT(4'b0100),
+        .RBI(rbi)
+    );
+
+    reg load;
+    reg reset;
+    reg[7:0] preload_number;
+
+    reg[7:0] time_left;
+    reg timeup;
+
+    Timer controller_timer(
+        .clk(clk),
+        .hold(1),
+        .load(load),
+        .reset(reset),
+        .time_init(preload_number),
+        .timeup(timeup),
+        .time_left(time_left)
+    );
+
+    localparam k0 = 0,k1 = 1,k2 = 2,k3 = 3,k4 = 4,k5 = 5,k6 = 6,k7 = 7
+    ,k8 = 8,k9 = 9,k10 = 10,k11 = 11,k12 = 12,k13 = 13,k14 = 14,k15 = 15,k16 = 16
+    ,k17 = 17,k18 = 18,k19 = 19,k20 = 20;
+    localparam c0 = 30,c1 = 31,c2 = 32,c3 = 33,c4 = 34,c5 = 35,c6 = 36,c7 = 37
+    ,c8 = 38,c9 = 39,c10 = 40,c11 = 41,c12 = 42,c13 = 43,c14 = 44,c15 = 45,
+    c16 = 46,c17 = 47,c18 = 48,c19 = 49,c20 = 50;
+    localparam finish=21;
+    localparam init=22;
+
+    wire controller_clk;
+    Filter controller_clk_filter(
+        .clk_in(clk),.cnt(50000),.clk_out(controller_clk),reset(1)
+    );
+
+    reg[1:0] prev_press;
+    wire pressed_posedge;
+
+    always@(posedge clk) begin
+        prev_press[0]=pressed;
+        prev_press[1]=prev_press[0];
+    end
+
+    assign pressed_posedge=prev_press[0]&(~prev_press[1]);
+
+    reg[5:0] state;
+
+    initial state=init;
+
+    always@(posedge clk) begin
+        case(state)
+        init:
+        begin
+            if(num==10) state=k0;
+            else state=init;
+        end
+        k0:
+        begin
+            if(timeup) state=init;
+            else if(pressed_edge)
+            case(num):
+                0: state=k1;
+                1: state=k2;
+                2: state=k3;
+                3: state=k4;
+                4: state=k5;
+                5: state=k6;
+                6: state=k7;
+                7: state=k8;
+                8: state=k9;
+                9: state=k0;
+                default:;
+            endcase
+        end
+        endcase
+        k1:
+        begin
+            if(timeup) state=init;
+            else if(pressed_edge)
+            case(num):
+                0: state=k11;
+                1: state=k12;
+                2: state=k13;
+                3: state=k14;
+                4: state=k15;
+                5: state=k16;
+                6: state=k17;
+                7: state=k18;
+                8: state=k19;
+                9: state=k10;
+                11: state=k0;
+                12: state=state+30;
+            endcase
+        end
+        k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12,k13,k14,k15,k16,k17,k18,k19,k20:
+        begin
+            if(timeup) state=init;
+            else if(pressed_edge)
+            case(num):
+                0: state=k20;
+                1: state=k20;
+                2: state=k20;
+                3: state=k20;
+                4: state=k20;
+                5: state=k20;
+                6: state=k20;
+                7: state=k20;
+                8: state=k20;
+                9: state=k20;
+                11: state=k0;
+                12: state=state+30;
+            endcase
+        end
+        c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20:
+        begin
+            if(timeup) state=finish;
+            else if(num==11) state=k0;
+        end
+        sparking:
+            if(num==11) state=k0;
+    end
+
+    reg[1:0] charging_begin;
+    wire charge_posedge;
+
+    always@(posedge clk) begin
+        if(state==charging) charging_begin[0]=1;
+        else charging_begin[0]=0;
+        charging_begin[1]=charging_begin[0];
+    end
+
+    assign charge_posedge=charging_begin[0]&(~charging_begin[1]);
+
+    always@(state) begin
+        if(state==init)begin
+            rbi=1;
+            reset=0;
+            sparking=0;
+        end
+        else if(k0<=state&&state<=k20) begin
+            rbi=0;
+            reset=1;
+            load=~pressed_posedge;
+            preload_number=10;
+            bcd[15:12]=state/10;
+            bcd[11:8]=state%10;
+            bcd[7:0]=0;
+            sparking=0;
+        end
+        else if(c0<=state&&state<=c20) begin
+            rbi=0;
+            reset=1;
+            load=~charging_begin;
+            preload_number=2*(state-30);
+            bcd[15:12]=(state-30)/10;
+            bcd[11:8]=(state-30)%10;
+            bcd[7:4]=(time_left/10)%10;
+            bcd[3:0]=(time_left)%10;
+            sparking=0;
+        end
+        else if(state==finish) begin
+            rbi=0;
+            reset=1;
+            load=1;
+            preload_number=0;
+            bcd=0;
+            sparking=1;
+        end
+    end
+
+
+endmodule

@@ -1,0 +1,29 @@
+module keyboard_instance2(clk,col,row,num,pressed);
+    input clk;
+    input [3:0] col;
+    output [3:0] row;
+    output [3:0] num;
+    output pressed;
+    
+    wire [15:0] key1;
+    wire [15:0] key2;
+
+    KeyboardScanner myScanner(
+        .clk(clk),
+        .col(col),
+        .row(row),
+        .key(key),
+        .pressed(pressed)
+    );
+    KeyboardDebouncer myDebouncer(
+        .clk(clk),
+        .key_in(key1),
+        .key_out(key2)
+    );
+    wire [3:0] data_disp;
+    onehot2binary onehot2binary(
+        .clk(clk),
+        .onehot(key2),
+        .binary(num)
+    );
+endmodule
